@@ -1,0 +1,12 @@
+diff -ruNp python2.7-2.7.16.orig/debian/multiarch.h.in python2.7-2.7.16/debian/multiarch.h.in
+--- python2.7-2.7.16.orig/debian/multiarch.h.in	2021-03-09 20:13:22.000000000 +0800
++++ python2.7-2.7.16/debian/multiarch.h.in	2021-04-15 09:55:38.440008032 +0800
+@@ -35,6 +35,8 @@
+ #  include <hppa-linux-gnu/@subdir@/@header@>
+ # elif defined(__ia64__)
+ #  include <ia64-linux-gnu/@subdir@/@header@>
++# elif defined(__loongarch64)
++#  include <loongarch64-linux-gnu/@subdir@/@header@>
+ # elif defined(__m68k__) && !defined(__mcoldfire__)
+ #  include <m68k-linux-gnu/@subdir@/@header@>
+ # elif defined(__mips_hard_float) && defined(__mips_isa_rev) && (__mips_isa_rev >=6) && defined(_MIPSEL)
