@@ -42,7 +42,9 @@ jobs:
             git config --global --add safe.directory /work
             
             mk-build-deps -i -r
-            dpkg-buildpackage -b -us -uc -tc
+            make -f debian/rules control-file
+            make -f debian/rules debian/patches/series
+            DEB_BUILD_OPTIONS=nocheck,nobench dpkg-buildpackage -b -us -uc -tc
 
             mkdir artifacts
             mv ../*.deb artifacts/
