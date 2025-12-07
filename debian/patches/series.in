@@ -1,4 +1,3 @@
-# git-updates.diff
 issue9189.diff
 build-libpython.diff
 deb-setup.diff
@@ -79,3 +78,5 @@ CVE-2019-16056.diff
 CVE-2019-16935.diff
 CVE-2019-9740_CVE-2019-9947.diff
 add-loongarch64-support.patch
+sphinx-fix-import-error.patch
+

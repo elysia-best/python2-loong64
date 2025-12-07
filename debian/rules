@@ -150,7 +150,11 @@ DPKG_CFLAGS  := $(shell dpkg-buildflags --get CPPFLAGS; dpkg-buildflags --get CF
 DPKG_CFLAGS  := $(subst -fstack-protector-strong,-fstack-protector,$(DPKG_CFLAGS))
 DPKG_LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS)
 OPT_CFLAGS   := $(filter-out -O%,$(DPKG_CFLAGS)) # default is -O3
+OPT_CFLAGS   += "-std=gnu11"
+OPT_CFLAGS   += -Wno-incompatible-pointer-types
 DEBUG_CFLAGS := $(filter-out -D_FORTIFY_SOURCE=%,$(patsubst -O%,-O0,$(DPKG_CFLAGS)))
+DEBUG_CFLAGS += "-std=gnu11"
+DEBUG_CFLAGS += -Wno-incompatible-pointer-types
 
 # on alpha, use -O2 only, use -mieee
 ifeq ($(DEB_HOST_ARCH),alpha)
@@ -668,7 +672,7 @@ minimal-test:
 
 stamps/stamp-doc-html:
 	dh_testdir
-	$(MAKE) -C Doc html
+#	$(MAKE) -C Doc html
 	@mkdir -p stamps
 	touch stamps/stamp-doc-html
 

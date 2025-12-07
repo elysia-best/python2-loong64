@@ -1,0 +1,11 @@
+--- a/Doc/tools/extensions/pyspecific.py
++++ b/Doc/tools/extensions/pyspecific.py
+@@ -15,7 +15,7 @@
+ from docutils import nodes, utils
+ from docutils.parsers.rst import Directive
+ 
+-from sphinx.util import status_iterator
++from sphinx.util.display import status_iterator
+ from sphinx.util.nodes import split_explicit_title
+ from sphinx.writers.html import HTMLTranslator
+ from sphinx.writers.latex import LaTeXTranslator

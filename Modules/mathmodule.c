@@ -70,7 +70,7 @@ extern double copysign(double, double);
 static const double pi = 3.141592653589793238462643383279502884197;
 static const double sqrtpi = 1.772453850905516027298167483341145182798;
 
-static double
+double
 sinpi(double x)
 {
     double y, r;
