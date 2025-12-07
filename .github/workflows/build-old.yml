@@ -13,10 +13,6 @@ jobs:
     name: Build Python2 for Debian loong64
     runs-on: ubuntu-latest
     permissions: write-all
-    strategy:
-      matrix:
-        variant:
-          - kde
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
@@ -41,7 +37,7 @@ jobs:
             apt install devscripts equivs build-essential git -y
             git config --global --add safe.directory /work
             
-            mk-build-deps -i -r
+            mk-build-deps -i -r -t "apt-get -y"
             make -f debian/rules control-file
             make -f debian/rules debian/patches/series
             DEB_BUILD_OPTIONS=nocheck,nobench dpkg-buildpackage -b -us -uc -tc
