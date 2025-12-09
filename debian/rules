@@ -653,6 +653,8 @@ minimal-test:
 stamps/stamp-doc-html:
 	dh_testdir
 #	$(MAKE) -C Doc html
+	@mkdir -p Doc/build/html
+	@touch Doc/build/html/index.html
 	@mkdir -p stamps
 	touch stamps/stamp-doc-html
 
@@ -1252,33 +1254,33 @@ binary-indep: build-indep install stamps/stamp-control
 	dh_testroot -i
 
 	: # $(p_doc) package
-	dh_installdirs -p$(p_doc) \
-		usr/share/doc/$(p_base) \
-		usr/share/doc/$(p_doc)
-	dh_installdocs -p$(p_doc)
-	cp -a Doc/build/html $(d_doc)/usr/share/doc/$(p_base)/
-	rm -f $(d_doc)/usr/share/doc/$(p_base)/html/_static/jquery.js
-	rm -f $(d_doc)/usr/share/doc/$(p_base)/html/_static/underscore.js
-	dh_link -p$(p_doc) \
-		/usr/share/doc/$(p_base)/html \
-			/usr/share/doc/$(p_doc)/html \
-		/usr/share/javascript/jquery/jquery.js \
-			/usr/share/doc/$(p_base)/html/_static/jquery.js \
-		/usr/share/javascript/underscore/underscore.js \
-			/usr/share/doc/$(p_base)/html/_static/underscore.js
+#	dh_installdirs -p$(p_doc) \
+#		usr/share/doc/$(p_base) \
+#		usr/share/doc/$(p_doc)
+#	dh_installdocs -p$(p_doc)
+#	cp -a Doc/build/html $(d_doc)/usr/share/doc/$(p_base)/
+#	rm -f $(d_doc)/usr/share/doc/$(p_base)/html/_static/jquery.js
+#	rm -f $(d_doc)/usr/share/doc/$(p_base)/html/_static/underscore.js
+#	dh_link -p$(p_doc) \
+#		/usr/share/doc/$(p_base)/html \
+#			/usr/share/doc/$(p_doc)/html \
+#		/usr/share/javascript/jquery/jquery.js \
+#			/usr/share/doc/$(p_base)/html/_static/jquery.js \
+#		/usr/share/javascript/underscore/underscore.js \
+#			/usr/share/doc/$(p_base)/html/_static/underscore.js
 
 	: # devhelp docs
-	$(buildd_static)/python debian/pyhtml2devhelp.py \
-		$(d_doc)/usr/share/doc/$(p_base)/html index.html $(VER) \
-		> $(d_doc)/usr/share/doc/$(p_base)/html/$(PVER).devhelp
-	gzip -9nv $(d_doc)/usr/share/doc/$(p_base)/html/$(PVER).devhelp
-	dh_link -p$(p_doc) \
-		/usr/share/doc/$(p_base)/html /usr/share/devhelp/books/$(PVER)
-
-	for i in $(p_ltst); do \
-	  rm -rf debian/$$i/usr/share/doc/$$i; \
-	  ln -s $(p_lbase) debian/$$i/usr/share/doc/$$i; \
-	done
+#	$(buildd_static)/python debian/pyhtml2devhelp.py \
+#		$(d_doc)/usr/share/doc/$(p_base)/html index.html $(VER) \
+#		> $(d_doc)/usr/share/doc/$(p_base)/html/$(PVER).devhelp
+#	gzip -9nv $(d_doc)/usr/share/doc/$(p_base)/html/$(PVER).devhelp
+#	dh_link -p$(p_doc) \
+#		/usr/share/doc/$(p_base)/html /usr/share/devhelp/books/$(PVER)
+#
+#	for i in $(p_ltst); do \
+#	  rm -rf debian/$$i/usr/share/doc/$$i; \
+#	  ln -s $(p_lbase) debian/$$i/usr/share/doc/$$i; \
+#	done
 
 	dh_installdebconf -i $(dh_args)
 	dh_installexamples -i $(dh_args)
